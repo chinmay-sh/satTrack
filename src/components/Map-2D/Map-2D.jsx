@@ -130,13 +130,7 @@ function MapChart() {
         strokeWidth={1}
         strokeDasharray={[5, 5]}
       />
-      {/* ISS Orbital Lines */}
-      <Line
-        from={[2.3522, 48.8566]}
-        to={[-74.006, 40.7128]}
-        stroke="#8c00ff"
-        strokeWidth={4}
-      />
+      
     </ComposableMap>
   );
 }
