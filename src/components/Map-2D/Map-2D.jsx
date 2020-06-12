@@ -26,9 +26,9 @@ function generateCircle(deg) {
 function MapChart() {
     const [markers,setMarkers] = useState([
         {
-          markerOffset: -15,
+          markerOffset: 0,
           name: "ISS",
-          coordinates: [-30.3816, -34.6037]
+          coordinates: [0,0]
         }
       ]);
 /*
@@ -48,7 +48,7 @@ function MapChart() {
         setMarkers([{
             markerOffset: -15,
             name: "ISS",
-            coordinates: [response.data.data.Latitude, response.data.data.Longitude]
+            coordinates: [response.data.data.Longitude, response.data.data.Latitude]
           }]);
 /*
           setIssData([
@@ -94,7 +94,7 @@ function MapChart() {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={"#000"}
+                fill={"#81c784"}
                 onClick={() => console.log(geo.properties.ISO_A3)}
               />
             );
@@ -107,7 +107,7 @@ function MapChart() {
           <text
             textAnchor="middle"
             y={markerOffset}
-            style={{ fontFamily: "system-ui", fill: "#5D5A6D" }}
+            style={{ fontFamily: "system-ui", fill: "#000", fontWeight:"bold" }}
           >
             {name}
           </text>

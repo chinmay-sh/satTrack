@@ -12,7 +12,7 @@ function App() {
   useEffect(()=>{
     const timer = setInterval(()=>{
       setLoadingStatus(false)
-  },3000);
+  },2500);
   return () => clearInterval(timer);
   },[])
 
@@ -23,14 +23,14 @@ function App() {
     spinnerColor='#9ee5f8'
     textColor='#676767'
     logoSrc={logo}
-    text='Loading Data'
+    text='Loading ISS since Epoch!'
   >
     <Container className="container">
       <Row className="map2d">
         <Col>ISS Tracking</Col>
         <Col> <MapChart /> </Col>
       </Row>
-      <Row>
+      <Row>{/*
         <Col>
           <table>
             <tbody>
@@ -48,7 +48,7 @@ function App() {
               </tr>
             </tbody>
           </table>
-        </Col>
+      </Col>*/}
       </Row>
     </Container>
   </LoadingScreen>
