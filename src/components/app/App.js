@@ -12,8 +12,8 @@ function App() {
   useEffect(()=>{
     const timer = setInterval(()=>{
       setLoadingStatus(false)
-  },2500);
-  return () => clearInterval(timer);
+    },2500);
+    return () => clearInterval(timer);
   },[])
 
   return (

@@ -75,7 +75,7 @@ function MapChart() {
 
 
   return (
-    <ComposableMap projection="geoEqualEarth" width={980} height={480}>
+    <ComposableMap projection="geoEquirectangular" width={980} height={480}>
       <PatternLines
         id="lines"
         height={6}
@@ -103,7 +103,7 @@ function MapChart() {
       </Geographies>
       {markers.map(({ name, coordinates, markerOffset }) => (
         <Marker key={name} coordinates={coordinates}>
-            <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
+            <circle r={10} fill="#F00" stroke="#5100ff" strokeWidth={2} />
           <text
             textAnchor="middle"
             y={markerOffset}
@@ -125,6 +125,14 @@ function MapChart() {
         stroke="#776865"
         strokeWidth={1}
         strokeDasharray={[5, 5]}
+      />
+      {/* ISS Orbital Lines */}
+      <Line
+        from={[2.3522, 48.8566]}
+        to={[-74.006, 40.7128]}
+        stroke="#8c00ff"
+        strokeWidth={4}
+        strokeLinecap="round"
       />
     </ComposableMap>
   );
