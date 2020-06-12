@@ -1,13 +1,33 @@
-import React, { useState, useEffect } from 'react';
 import './App.css';
 import MapChart from '../Map-2D/Map-2D';
 import {Container, Row, Col} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import LoadingScreen from 'react-loading-screen';
+import logo from '../../logo.svg';
+
 
 function App() {
+  const [loadingStatus,setLoadingStatus] = useState(true);
+
+  useEffect(()=>{
+    const timer = setInterval(()=>{
+      setLoadingStatus(false)
+  },3000);
+  return () => clearInterval(timer);
+  },[])
 
   return (
+    <LoadingScreen
+    loading={loadingStatus}
+    bgColor='#f1f1f1'
+    spinnerColor='#9ee5f8'
+    textColor='#676767'
+    logoSrc={logo}
+    text='Loading Data'
+  >
     <Container className="container">
       <Row className="map2d">
+        <Col>ISS Tracking</Col>
         <Col> <MapChart /> </Col>
       </Row>
       <Row>
@@ -31,6 +51,8 @@ function App() {
         </Col>
       </Row>
     </Container>
+  </LoadingScreen>
+    
   );
 }
 
