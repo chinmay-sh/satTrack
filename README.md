@@ -1,6 +1,6 @@
 # satTrack :satellite: [![gh-pages](https://img.shields.io/badge/gh--pages-deployed-blue?logo=github)](https://the-redlord.github.io/satTrack/)
 
-A Simple Converter built using ReactJS.
+2D Map based Tracking of satellites around earth.
 
 ## Getting Started
 
