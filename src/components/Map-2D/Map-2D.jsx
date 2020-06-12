@@ -10,7 +10,6 @@ import {
 } from "react-simple-maps";
 import { PatternLines } from "@vx/pattern";
 import data from './world-110m.json';
-import issIcon from './assets/space-station.svg';
 
 const geoUrl = data;
 

@@ -10,6 +10,26 @@ function App() {
       <Row className="map2d">
         <Col> <MapChart /> </Col>
       </Row>
+      <Row>
+        <Col>
+          <table>
+            <tbody>
+              <tr>
+                <th>Speed</th>
+                <th>Altitude</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </Col>
+      </Row>
     </Container>
   );
 }

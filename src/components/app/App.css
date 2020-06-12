@@ -4,12 +4,16 @@
 }
 */  
 .container {
-  width: 94%;
+  width: 80%;
   text-align: center;
   margin: auto;
 }
 
 .map2d {
-  border: 1px solid red;
   margin: 2px;
+}
+
+table,th,td {
+  margin: auto;
+  border: 1px solid black;
 }
