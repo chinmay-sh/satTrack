@@ -10,13 +10,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Gen dummy page
+        run: |
+          mkdir public
+          cat > public/index.html <<EOL
+          <!doctype html>
+          <html>
+            <head>
+              <title>GitHub Pages deployed!</title>
+            </head>
+            <body>
+              <p>GitHub Pages with <strong>${{ github.sha }}</strong> commit ID has been deployed successfully.</p>
+            </body>
+          </html>
+          EOL
       - name: Set-up Node
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
       - run: npm install
       - run: npm run build
-      - run: npm test
       - name: Deploy
         uses: crazy-max/ghaction-github-pages@v2
         with:
