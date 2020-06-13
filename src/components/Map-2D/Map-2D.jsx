@@ -46,13 +46,9 @@ function MapChart() {
 */
 
       async function orbitApiCall(){
-        var tempArr = [];
         const res = await axios.get(`https://sat-track.azurewebsites.net/api/issOrbit`);
         // console.log(res.data.data.orbitalData);
         setOrbitArray(res.data.data.orbitalData);
-        // for(var i=0;i<res.data.data.orbitalLongData.length;i++){
-        //   console.log(res.data.data.orbitalLongData[i])
-        // }
       }
 
       async function apiCall(){
