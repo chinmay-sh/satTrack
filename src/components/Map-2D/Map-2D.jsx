@@ -31,6 +31,9 @@ function MapChart() {
           coordinates: [0,0]
         }
       ]);
+
+      const [orbitArray,setOrbitArray] = useState([]);
+
 /*
       const [issData,setIssData] = useState([
           {
@@ -41,9 +44,20 @@ function MapChart() {
           }
       ]);
 */
+
+      async function orbitApiCall(){
+        var tempArr = [];
+        const res = await axios.get(`https://sat-track.azurewebsites.net/api/issOrbit`);
+        // console.log(res.data.data.orbitalData);
+        setOrbitArray(res.data.data.orbitalData);
+        // for(var i=0;i<res.data.data.orbitalLongData.length;i++){
+        //   console.log(res.data.data.orbitalLongData[i])
+        // }
+      }
+
       async function apiCall(){
         const response = await axios.get(`https://sat-track.azurewebsites.net/api/iss`);
-        console.log(response.data.data)
+        // console.log(response.data.data)
         //console.log(`Latitude -> ${response.data.data.Latitude} , Longitude -> ${response.data.data.Longitude}`)
         setMarkers([{
             markerOffset: -15,
@@ -63,6 +77,7 @@ function MapChart() {
       }
 
       useEffect(()=>{
+        orbitApiCall();
         apiCall();
       },[]);
 
@@ -131,10 +146,16 @@ function MapChart() {
         strokeDasharray={[5, 5]}
       />
       {/* ISS Orbital Lines */}
+      {/* Current orbit */}
       <Line
-        from={[2.3522, 48.8566]}
-        to={[-74.006, 40.7128]}
+        coordinates={orbitArray.slice(0,1000)}
         stroke="#8c00ff"
+        strokeWidth={4}
+      />
+      {/* Next orbit */}
+      <Line
+        coordinates={orbitArray.slice(1000,2000)}
+        stroke="#f21120"
         strokeWidth={4}
       />
     </ComposableMap>

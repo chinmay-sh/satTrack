@@ -12,7 +12,7 @@ function App() {
   useEffect(()=>{
     const timer = setInterval(()=>{
       setLoadingStatus(false)
-    },2500);
+    },5000);
     return () => clearInterval(timer);
   },[])
 
