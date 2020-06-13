@@ -21,7 +21,7 @@ Deployed to GitHub Pages : https://the-redlord.github.io/satTrack/
 
 ## Built With
 
-* NodeJS
+* [satTrack-API](https://github.com/the-redlord/satTrack-api)
 * ReactJS
 
 ## Authors
