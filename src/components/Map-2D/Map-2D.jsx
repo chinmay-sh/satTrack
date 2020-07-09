@@ -46,7 +46,7 @@ function MapChart() {
 */
 
       async function orbitApiCall(){
-        const res = await axios.get(`https://sat-track.azurewebsites.net/api/orbitOverlap`);
+        const res = await axios.get(`http://ec2-3-6-69-206.ap-south-1.compute.amazonaws.com:4243/api/orbitOverlap`);
         const dataArray = res.data.data;
         const reqArray = [];
         for (let i = 0; i < dataArray.length; i++) {
