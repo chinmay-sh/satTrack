@@ -46,9 +46,14 @@ function MapChart() {
 */
 
       async function orbitApiCall(){
-        const res = await axios.get(`https://sat-track.azurewebsites.net/api/issOrbit`);
-        // console.log(res.data.data.orbitalData);
-        setOrbitArray(res.data.data.orbitalData);
+        const res = await axios.get(`http://ec2-3-6-69-206.ap-south-1.compute.amazonaws.com:4243/api/orbitOverlap`);
+        const dataArray = res.data.data;
+        const reqArray = [];
+        for (let i = 0; i < dataArray.length; i++) {
+          let x = dataArray[i].orbitalData;
+          reqArray.push(x);
+        }
+        setOrbitArray(reqArray);
       }
 
       async function apiCall(){
@@ -146,17 +151,13 @@ function MapChart() {
       />
       {/* ISS Orbital Lines */}
       {/* Current orbit */}
-      <Line
-        coordinates={orbitArray.slice(0,1000)}
+      {orbitArray.map((eachOrbitalArray) => (
+        <Line
+        coordinates={eachOrbitalArray.slice(0,900)}
         stroke="#8c00ff"
         strokeWidth={4}
       />
-      {/* Next orbit */}
-      <Line
-        coordinates={orbitArray.slice(1000,2000)}
-        stroke="#f21120"
-        strokeWidth={4}
-      />
+      ))}
     </ComposableMap>
   );
 }
