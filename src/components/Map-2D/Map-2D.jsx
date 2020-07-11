@@ -1,4 +1,5 @@
 import React from "react";
+import './Map-2D.css';
 import {
   ComposableMap,
   Geographies,
@@ -13,8 +14,10 @@ import data from './world-110m.json';
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from 'axios';
+import colors from './colors.json';
 
 const geoUrl = data;
+const lineClrs = colors;
 
 function generateCircle(deg) {
   if (!deg) return [[-180, 0], [-90, 0], [0, 0], [90, 0], [180, 0]];
@@ -30,9 +33,13 @@ function MapChart() {
           name: "ISS",
           coordinates: [0,0]
         }
-      ]);
+    ]);
 
-      const [orbitArray,setOrbitArray] = useState([]);
+    const [orbitArray,setOrbitArray] = useState([]);
+
+    const [nameArray,setNameArray] = useState([]);
+
+    const [wer,setWer] = useState([]);
 
 /*
       const [issData,setIssData] = useState([
@@ -46,9 +53,19 @@ function MapChart() {
 */
 
       async function orbitApiCall(){
-        const res = await axios.get(`https://sat-track.azurewebsites.net/api/issOrbit`);
-        // console.log(res.data.data.orbitalData);
-        setOrbitArray(res.data.data.orbitalData);
+        //const res = await axios.get(`http://ec2-3-6-69-206.ap-south-1.compute.amazonaws.com:4243/api/orbitOverlap`);
+        const res = await axios.get(`https://sat-track.azurewebsites.net/api/orbitOverlap`);
+        const dataArray = res.data.data;
+        const reqArray = [];
+        const Satname = [];
+        for (let i = 0; i < dataArray.length; i++) {
+          let x = {"number": dataArray[i].number, "orbitalData": dataArray[i].orbitalData};
+          let y = {"number": dataArray[i].number, "name": dataArray[i].name};
+          reqArray.push(x);
+          Satname.push(y);
+        }
+        setWer(reqArray);
+        setNameArray(Satname);
       }
 
       async function apiCall(){
@@ -72,6 +89,21 @@ function MapChart() {
 */
       }
 
+      function handlechange(satnumber,wer) {
+        //console.log("changed",satnumber);
+        const g = [];
+        //console.log(g);
+        for (let i = 0; i < wer.length; i++){
+          if(wer[i].number === satnumber){
+            wer[i] = {"number": wer[i].number, "orbitalData": wer[i].orbitalData, "orbitcolor":lineClrs.colors[i]}
+            g.push(wer[i]);
+            console.log(g);
+          }
+        }
+        setOrbitArray(orbitArray.concat(g[0]));
+        //console.log(orbitArray);     
+      }
+
       useEffect(()=>{
         orbitApiCall();
         apiCall();
@@ -86,6 +118,8 @@ function MapChart() {
 
 
   return (
+    <div>
+    
     <ComposableMap projection="geoEquirectangular" width={980} height={480}>
       <PatternLines
         id="lines"
@@ -146,18 +180,27 @@ function MapChart() {
       />
       {/* ISS Orbital Lines */}
       {/* Current orbit */}
-      <Line
-        coordinates={orbitArray.slice(0,1000)}
-        stroke="#8c00ff"
+      {orbitArray.map((eachOrbitalArray) => (
+        <Line
+        coordinates={eachOrbitalArray.orbitalData.slice(0,900)}
+        stroke={eachOrbitalArray.orbitcolor}
         strokeWidth={4}
       />
-      {/* Next orbit */}
-      <Line
-        coordinates={orbitArray.slice(1000,2000)}
-        stroke="#f21120"
-        strokeWidth={4}
-      />
+      ))}
     </ComposableMap>
+    
+    <h1>Check Boxes for orbits of respective stations</h1>
+    
+    <div className="checkcontainer">
+      {nameArray.map((eachname) => (
+         <div className="child">
+          <input type="checkbox" onChange={() =>{handlechange(eachname.number,wer)}}/>
+          <p><h1>{eachname.name}</h1></p>
+         </div>
+        ))}
+    </div>
+
+    </div>
   );
 }
 
