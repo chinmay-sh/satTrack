@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/satTrack/static/css/main.4fe57ed1.chunk.css",
+    "main.js": "/satTrack/static/js/main.c6dfb406.chunk.js",
+    "main.js.map": "/satTrack/static/js/main.c6dfb406.chunk.js.map",
+    "runtime-main.js": "/satTrack/static/js/runtime-main.6935748c.js",
+    "runtime-main.js.map": "/satTrack/static/js/runtime-main.6935748c.js.map",
+    "static/css/2.95b67b56.chunk.css": "/satTrack/static/css/2.95b67b56.chunk.css",
+    "static/js/2.784919ea.chunk.js": "/satTrack/static/js/2.784919ea.chunk.js",
+    "static/js/2.784919ea.chunk.js.map": "/satTrack/static/js/2.784919ea.chunk.js.map",
+    "index.html": "/satTrack/index.html",
+    "precache-manifest.a96a0495a26a93eeda97ca75e5d86bca.js": "/satTrack/precache-manifest.a96a0495a26a93eeda97ca75e5d86bca.js",
+    "service-worker.js": "/satTrack/service-worker.js",
+    "static/css/2.95b67b56.chunk.css.map": "/satTrack/static/css/2.95b67b56.chunk.css.map",
+    "static/css/main.4fe57ed1.chunk.css.map": "/satTrack/static/css/main.4fe57ed1.chunk.css.map",
+    "static/js/2.784919ea.chunk.js.LICENSE.txt": "/satTrack/static/js/2.784919ea.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/satTrack/static/media/logo.2e6579fa.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6935748c.js",
+    "static/css/2.95b67b56.chunk.css",
+    "static/js/2.784919ea.chunk.js",
+    "static/css/main.4fe57ed1.chunk.css",
+    "static/js/main.c6dfb406.chunk.js"
+  ]
+}
